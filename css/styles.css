@@ -26,12 +26,15 @@
     --white: #FFFFFF;
     --radius: 8px;
     --transition: 0.3s ease;
+
+    --text-on-dark: #F8FAFC;
 }
 
 
 html {
     scroll-behavior: smooth;
 }
+
 
 body {
     font-family: "Poppins", sans-serif;
@@ -58,4 +61,271 @@ ul {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+section {
+    scroll-margin-top: 90px;
+}
+
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--secondary);
+}
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a.active {
+    color: var(--secondary);
+}
+
+nav a.active::after {
+    width: 100%;
+}
+
+nav h1 {
+    color: var(--primary);
+    font-size: 1.6rem;
+}
+
+section {
+    padding: 80px 0;
+}
+
+#hero {
+   background:
+linear-gradient(
+rgba(15,23,42,.80),
+rgba(15,23,42,.80)
+),
+url("../images/hero.jpg");
+background-size: cover;
+background-position: center;
+    color: var(--white);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    padding-top: 40px;
+}
+
+.hero-subtitle {
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    max-width: 600px;
+    color: var(--text-on-dark);
+    margin-bottom: 40px;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn {
+    display: inline-block;
+    padding: 16px 34px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(250, 204, 21, 0.35);
+}
+
+.btn-secondary {
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    border-color: #25D366;
+    color: #25D366;
+    background: rgba(37, 211, 102, 0.08);
+}
+
+.hero-content h2 {
+    font-size: clamp(2.5rem,5vw,4rem);
+    line-height:1.2;
+    margin-bottom:20px;
+}
+
+
+/* ===========================
+   About Section
+=========================== */
+
+#about {
+    background: var(--background-light);
+}
+
+#about h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.section-intro {
+    max-width: 700px;
+    margin-bottom: 50px;
+    color: var(--text-light);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.about-card h3 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.about-card ul li {
+    margin-bottom: 15px;
+}
+
+#services {
+    padding: 100px 0;
+    background: var(--background-light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.service-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 1.4rem;
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        
+    }
+
+}
+
+.service-card {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--secondary);
 }
