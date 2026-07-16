@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    /* Brand Colours */
+
+    --primary: #0F172A;
+    --secondary: #FACC15;
+
+    /* Backgrounds */
+
+    --background: #FFFFFF;
+    --background-light: #F8FAFC;
+
+    /* Text */
+
+    --text-dark: #1F2937;
+    --text-light: #6B7280;
+
+    /* UI */
+
+    --white: #FFFFFF;
+    --radius: 8px;
+    --transition: 0.3s ease;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
