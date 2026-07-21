@@ -73,6 +73,12 @@ section {
     padding: 80px 0;
 }
 
+section h2 {
+    text-align: center;
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
+
 header {
     background: rgba(255,255,255,.96);
     backdrop-filter: blur(10px);
@@ -171,7 +177,7 @@ background-position: center;
 .hero-content {
     max-width: 720px;
     padding: 40px 0;
-    animation: fadeUp 1s ease;
+    animation: fadeUp 1s ease, heroFade 1s ease forwards;
 }
 
 .hero-subtitle {
@@ -200,11 +206,18 @@ background-position: center;
     font-weight:300;
 }
 
-.hero-buttons{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:20px;
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-content h2 {
+    font-size: clamp(2.5rem,5vw,4rem);
+    line-height:1.2;
+    margin-bottom:20px;
+    text-shadow: 0 4px 18px rgba(0,0,0,.35);
 }
 
 /* ===========================
@@ -226,13 +239,6 @@ background-position: center;
 }
 .btn:active {
     transform: scale(.97);
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 18px;
-    margin-top: 15px;
-    flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -257,13 +263,6 @@ background-position: center;
     background: rgba(37, 211, 102, 0.08);
 }
 
-.hero-content h2 {
-    font-size: clamp(2.5rem,5vw,4rem);
-    line-height:1.2;
-    margin-bottom:20px;
-    text-shadow: 0 4px 18px rgba(0,0,0,.35);
-}
-
 
 /* ===========================
    About Section
@@ -273,11 +272,6 @@ background-position: center;
     background: var(--background-light);
     padding: 100px 0 60px;
     border-top: 1px solid rgba(15,23,42,.05);
-}
-
-section h2 {
-    text-align: center;
-    margin-bottom: 15px;
 }
 
 #about h2 {
@@ -349,6 +343,19 @@ section h2 {
     border: 1px solid rgba(255,255,255,.08);
     box-shadow: 0 10px 25px rgba(0,0,0,.08);
     transition: var(--transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--secondary);
 }
 
 .service-card:hover {
@@ -398,67 +405,6 @@ section h2 {
     margin-bottom: 10px;
 }
 
-/* ==================================================
-   MOBILE (768px and below)
-================================================== */
-
-@media (max-width: 768px) {
-    /* Navigation */
-
-    nav {
-        position: relative;
-    }
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        padding: 20px 0;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 12px 30px rgba(0,0,0,.12);
-    }
-    nav ul.open {
-    display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-    /* Services */
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    /* Contact */
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-    /* Footer */
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
-
-.service-card {
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 5px;
-    background: var(--secondary);
-}
-
 #contact {
     padding: 100px 0;
     background: #ffffff;
@@ -499,62 +445,55 @@ section h2 {
     line-height: 1.7;
 }
 
-@media (max-width:768px) {
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-nav ul {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: var(--white);
-    padding: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: .3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
-}
-
-.menu-toggle {
-    display: block;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
+.contact-card h2 {
     color: var(--primary);
-    position: relative;
-    z-index: 1000;
+    margin: 15px 0;
+    font-size: 1.8rem;
 }
 
-nav ul.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.contact-card .service-icon {
+    margin-bottom: 15px;
 }
-nav li {
-    width: 100%;
+
+.contact-card .btn {
+    margin-top: 10px;
 }
-nav li + li {
-    border-top: 1px solid #eee;
+
+.contact-note {
+    text-align: center;
+    margin-top: 50px;
+    color: #666;
+    font-style: italic;
 }
-nav ul a {
-    display: block;
-    padding: 18px 24px;
-    width: 100%;
+
+.contact-card .btn-secondary {
+    background: #acfcc9;
+    color: var(--text-dark);
+    border-color: #25D366;
 }
-nav ul a::after {
-    display: none;
+
+.contact-card .btn-secondary:hover {
+    background: #25D366;
+    color: var(--white);
+    border-color: #25D366;
 }
-nav ul a:hover {
-    background: #f8fafc;
+
+.service-icon svg,
+.contact-card svg {
+    width: 52px;
+    height: 52px;
+    stroke: var(--secondary);
+    stroke-width: 2;
+    transition: var(--transition);
 }
-    .menu-toggle {
-        display: block;
-    }
+
+.service-card:hover svg,
+.contact-card:hover svg {
+    transform: scale(1.1);
+}
+
+.contact-card:nth-child(2) svg {
+    stroke: #25D366;
 }
 
 footer {
@@ -599,108 +538,6 @@ footer {
     font-size: .95rem;
 }
 
-@media (max-width:768px){
-    .footer-grid{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-}
-
-@media (max-width:768px){
-    nav{
-        position:relative;
-    }
-    .menu-toggle{
-        display:block;
-    }
-    nav ul{
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        background:var(--white);
-        box-shadow:0 8px 20px rgba(0,0,0,.08);
-        opacity:0;
-        visibility:hidden;
-        transform:translateY(-10px);
-        transition:.3s ease;
-    }
-    nav ul.open{
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-    }
-    nav li{
-        width:100%;
-        border-top:1px solid #eee;
-    }
-    nav ul a{
-        display:block;
-        padding:18px 24px;
-    }
-    nav ul a::after{
-        display:none;
-    }
-}
-
-.contact-card h2 {
-    color: var(--primary);
-    margin: 15px 0;
-    font-size: 1.8rem;
-}
-
-.contact-card .service-icon {
-    margin-bottom: 15px;
-}
-
-.contact-card .btn {
-    margin-top: 10px;
-}
-
-.contact-note {
-    text-align: center;
-    margin-top: 50px;
-    color: #666;
-    font-style: italic;
-}
-
-.contact-card .btn-secondary {
-    background: #acfcc9;
-    color: var(--text-dark);
-    border-color: #25D366;
-}
-
-.contact-card .btn-secondary:hover {
-    background: #25D366;
-    color: var(--white);
-    border-color: #25D366;
-}
-
-
-.service-icon svg,
-.contact-card svg {
-    width: 52px;
-    height: 52px;
-    stroke: var(--secondary);
-    stroke-width: 2;
-    transition: var(--transition);
-}
-
-.service-card:hover svg,
-.contact-card:hover svg {
-    transform: scale(1.1);
-}
-
-.contact-card .service-icon {
-    margin-bottom: 15px;
-}
-
-.contact-card:nth-child(2) svg {
-    stroke: #25D366;
-}
-
 /* ===========================
    Scroll Reveal
 =========================== */
@@ -720,10 +557,6 @@ footer {
    Hero Load Animation
 =========================== */
 
-.hero-content {
-    animation: heroFade 1s ease forwards;
-}
-
 @keyframes heroFade {
     from {
         opacity: 0;
@@ -734,10 +567,7 @@ footer {
         transform: translateY(0);
     }
 }
-section h2 {
-    margin-bottom: 18px;
-    line-height: 1.2;
-}
+
 @keyframes fadeUp {
     from{
         opacity:0;
@@ -748,7 +578,6 @@ section h2 {
         transform:translateY(0);
     }
 }
-
 
 /* ===========================
    Floating WhatsApp
@@ -792,5 +621,92 @@ section h2 {
     }
     100% {
         transform: scale(1);
+    }
+}
+
+/* ==================================================
+   MOBILE (768px and below)
+   Single consolidated breakpoint — every mobile
+   override lives here now, nowhere else in the file.
+================================================== */
+
+@media (max-width: 768px) {
+
+    /* Navigation */
+    nav {
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--primary);
+        position: relative;
+        z-index: 1000;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: .3s ease;
+        box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    }
+
+    nav ul.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    nav li {
+        width: 100%;
+        border-top: 1px solid #eee;
+    }
+
+    nav ul a {
+        display: block;
+        width: 100%;
+        padding: 18px 24px;
+    }
+
+    nav ul a::after {
+        display: none;
+    }
+
+    nav ul a:hover {
+        background: #f8fafc;
+    }
+
+    /* Services */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* About */
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 }
