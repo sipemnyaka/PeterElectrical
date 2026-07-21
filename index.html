@@ -29,7 +29,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- ===========================
+         Structured Data (JSON-LD)
+         Local business schema for SEO / Google rich results.
+         Not rendered on page — safe to ignore visually.
+    =========================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Electrician",
+      "name": "Peter Electrical",
+      "image": "https://peterelectrical.netlify.app/images/hero.jpg",
+      "url": "https://peterelectrical.netlify.app",
+      "telephone": "+27730829530",
+      "description": "Reliable residential and commercial electrical services in Mthatha and surrounding areas, including installations, repairs, fault finding and maintenance.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mthatha",
+        "addressRegion": "Eastern Cape",
+        "addressCountry": "ZA"
+      },
+      "areaServed": "Mthatha and surrounding areas",
+    }
+    </script>
+
 </head>
+
+
 
 <body>
   <header>
