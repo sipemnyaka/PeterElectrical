@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://peterelectrical.netlify.app/sitemap.xml
+Sitemap: https://peterelectrical.co.za/sitemap.xml
