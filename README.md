@@ -139,7 +139,7 @@ During this project I gained hands-on experience with:
 
 Integration & Production Engineer | Azure Certified | SRE Enthusiast
 
-- GitHub: https://github.com/sipemnyaka
+- GitHub: https://github.com/sipemnyaka/PeterElectrical
 - LinkedIn: https://www.linkedin.com/in/sipesande-mnyaka-49a592b4/
 
 ---
