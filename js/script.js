@@ -73,20 +73,36 @@ mobileLinks.forEach(link => {
     });
 });
 
-const quoteForm = document.getElementById("quote-form");
-const formStatus = document.getElementById("form-status");
 
-if (quoteForm) {
+document.addEventListener('DOMContentLoaded', function() {
+    const quoteForm = document.getElementById("quote-form");
+    const formStatus = document.getElementById("form-status");
+
+    if (!quoteForm) {
+        console.error("Quote form not found!");
+        return;
+    }
+
     quoteForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const submitButton = quoteForm.querySelector('button[type="submit"]');
 
+        // Check if button exists before using it
+        if (!submitButton) {
+            console.error("Submit button not found inside the form!");
+            formStatus.textContent = "Something went wrong. Please refresh and try again.";
+            formStatus.style.color = "red";
+            return;
+        }
+
+        // Disable button and show loading state
         submitButton.disabled = true;
         submitButton.textContent = "Sending...";
-
         formStatus.textContent = "";
+        formStatus.style.color = "";
 
+        // Get form data
         const formData = new FormData(quoteForm);
 
         const data = {
@@ -107,26 +123,44 @@ if (quoteForm) {
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();
-
+            // Check if response is OK before trying to parse JSON
             if (!response.ok) {
-                throw new Error(result.error || "Unable to submit request.");
+                let errorMessage = `Server error: ${response.status}`;
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.error || errorMessage;
+                } catch (e) {
+                    errorMessage = `Server error: ${response.status} ${response.statusText}`;
+                }
+                throw new Error(errorMessage);
             }
 
+            // Now safely parse the JSON response
+            const result = await response.json();
+
+            //SUCCESS - Friendly and professional
             formStatus.textContent =
                 "Thanks! Your quote request has been received. Peter will get back to you shortly.";
+            formStatus.style.color = "green";
 
             quoteForm.reset();
 
         } catch (error) {
             console.error("Quote form error:", error);
 
-            formStatus.textContent =
-                "Sorry, something went wrong. Please contact Peter directly.";
+            //CUSTOMER-FRIENDLY ERROR MESSAGES
+            let userMessage = "We're having trouble submitting your request right now. Please contact Peter directly or try again in a few minutes.";
+
+            // Log technical details for admin
+            console.log("Error type:", error.message);
+
+            formStatus.textContent = userMessage;
+            formStatus.style.color = "#d9534f";
 
         } finally {
+            // Re-enable the button
             submitButton.disabled = false;
             submitButton.textContent = "Request Quote";
         }
     });
-}
+});
