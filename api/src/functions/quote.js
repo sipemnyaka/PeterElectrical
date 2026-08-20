@@ -5,6 +5,17 @@ app.http("quote", {
     authLevel: "anonymous",
     route: "quote",
 
+    extraOutputs: {
+        quoteDocument: {
+            type: "cosmosDB",
+            databaseName: "QuoteDB",
+            containerName: "Quotes",
+            connectionStringSetting: "CosmosDbConnectionString",
+            createIfNotExists: true
+        }
+    },
+
+
     handler: async (request, context) => {
         try {
             const data = await request.json();
@@ -35,6 +46,23 @@ app.http("quote", {
                 service,
                 preferredContact
             });
+
+            const quote = {
+                id: Date.now().toString(),
+                name,
+                phone,
+                email: email || "",
+                service,
+                message,
+                preferredContact,
+                status: "NEW",
+                createdAt: new Date().toISOString()
+            };
+
+            context.extraOutputs.set(
+                context.extraOutputs.quoteDocument,
+                quote
+            );
 
             return {
                 status: 200,
