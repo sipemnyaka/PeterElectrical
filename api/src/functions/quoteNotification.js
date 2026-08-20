@@ -24,6 +24,11 @@ app.cosmosDB('quoteNotification', {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         for (const quote of documents) {
+            if (quote.notificationStatus === 'SENT') {
+                context.log(`Quote ${quote.id} already notified. Skipping.`);
+                continue;
+            }
+            
             context.log('NEW QUOTE RECEIVED');
             context.log(`Customer: ${quote.name}`);
             context.log(`Phone: ${quote.phone}`);
