@@ -9,6 +9,7 @@ const cosmosClient = new CosmosClient(
 const database = cosmosClient.database('QuoteDB');
 const container = database.container('Quote');
 
+// Set up a Cosmos DB trigger for the "Quote" container
 app.cosmosDB('quoteNotification', {
     connection: 'COSMOS_CONNECTION',
     databaseName: 'QuoteDB',
