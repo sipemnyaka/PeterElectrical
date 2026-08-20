@@ -20,7 +20,7 @@ app.cosmosDB('quoteNotification', {
         if (!documents || documents.length === 0) {
             return;
         }
-
+//Resend email notification logic
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         for (const quote of documents) {
@@ -28,7 +28,7 @@ app.cosmosDB('quoteNotification', {
                 context.log(`Quote ${quote.id} already notified. Skipping.`);
                 continue;
             }
-            
+
             context.log('NEW QUOTE RECEIVED');
             context.log(`Customer: ${quote.name}`);
             context.log(`Phone: ${quote.phone}`);
