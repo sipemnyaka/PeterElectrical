@@ -93,3 +93,4 @@ Quote ID: ${quote.id}
         }
     }
 });
+//end of resend email notification logic
