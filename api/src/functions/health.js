@@ -5,7 +5,7 @@ app.http('health', {
     authLevel: 'anonymous',
     handler: async (request, context) => {
         context.log('Peter Electrical health check requested');
-
+        //jusut return a simple JSON response indicating the service is healthy
         return {
             status: 200,
             jsonBody: {
