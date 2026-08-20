@@ -1,5 +1,13 @@
 const { app } = require('@azure/functions');
+const { CosmosClient } = require('@azure/cosmos');
 const { Resend } = require('resend');
+
+const cosmosClient = new CosmosClient(
+    process.env.COSMOS_CONNECTION
+);
+
+const database = cosmosClient.database('QuoteDB');
+const container = database.container('Quote');
 
 app.cosmosDB('quoteNotification', {
     connection: 'COSMOS_CONNECTION',
@@ -48,12 +56,34 @@ Quote ID: ${quote.id}
 
                 if (error) {
                     context.error('Email notification failed:', error);
+
+                    await container.item(quote.id, quote.id).replace({
+                        ...quote,
+                        notificationStatus: 'FAILED'
+                    });
+
                     continue;
                 }
 
-                context.log(`Email notification sent successfully. Email ID: ${data.id}`);
+                await container.item(quote.id, quote.id).replace({
+                    ...quote,
+                    notificationStatus: 'SENT'
+                });
+
+                context.log(
+                    `Email notification sent successfully. Email ID: ${data.id}`
+                );
+
             } catch (error) {
-                context.error('Unexpected email notification error:', error);
+                context.error(
+                    'Unexpected email notification error:',
+                    error
+                );
+
+                await container.item(quote.id, quote.id).replace({
+                    ...quote,
+                    notificationStatus: 'FAILED'
+                });
             }
         }
     }
