@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: formData.get("phone"),
             email: formData.get("email"),
             service: formData.get("service"),
+            location: formData.get("location"),
             message: formData.get("message"),
             preferredContact: formData.get("preferredContact")
         };

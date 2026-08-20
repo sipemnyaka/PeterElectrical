@@ -23,12 +23,13 @@ app.http("quote", {
                 phone,
                 email,
                 service,
+                location,
                 message,
                 preferredContact
             } = data;
 
             // Basic validation
-            if (!name || !phone || !service || !message || !preferredContact) {
+            if (!name || !phone || !service || !location || !message || !preferredContact) {
                 return {
                     status: 400,
                     jsonBody: {
@@ -42,6 +43,7 @@ app.http("quote", {
                 phone,
                 email,
                 service,
+                location,
                 preferredContact
             });
 
@@ -51,6 +53,7 @@ app.http("quote", {
                 phone,
                 email: email || "",
                 service,
+                location,
                 message,
                 preferredContact,
                 status: "NEW",

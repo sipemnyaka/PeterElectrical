@@ -20,6 +20,7 @@ app.cosmosDB('quoteNotification', {
             context.log(`Customer: ${quote.name}`);
             context.log(`Phone: ${quote.phone}`);
             context.log(`Service: ${quote.service}`);
+            context.log(`Location: ${quote.location}`);
             context.log(`Preferred contact: ${quote.preferredContact}`);
             context.log(`Quote ID: ${quote.id}`);
 
@@ -35,6 +36,7 @@ Customer: ${quote.name}
 Phone: ${quote.phone}
 Email: ${quote.email || 'Not provided'}
 Service: ${quote.service}
+Location: ${quote.location}
 Preferred contact: ${quote.preferredContact}
 
 Message:
