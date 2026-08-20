@@ -6,3 +6,4 @@ app.setup({
 
 require('./health');
 require('./quote');
+require('./quoteNotification');
