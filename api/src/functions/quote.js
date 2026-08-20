@@ -1,20 +1,18 @@
-const { app } = require("@azure/functions");
+const { app, output } = require("@azure/functions");
+
+const quoteDocument = output.cosmosDB({
+    databaseName: "QuoteDB",
+    containerName: "Quote",
+    connection: "COSMOS_CONNECTION",
+    createIfNotExists: false
+});
 
 app.http("quote", {
     methods: ["POST"],
     authLevel: "anonymous",
     route: "quote",
 
-    extraOutputs: {
-        quoteDocument: {
-            type: "cosmosDB",
-            databaseName: "QuoteDB",
-            containerName: "Quotes",
-            connectionStringSetting: "CosmosDbConnectionString",
-            createIfNotExists: true
-        }
-    },
-
+    extraOutputs: [quoteDocument],
 
     handler: async (request, context) => {
         try {
@@ -56,11 +54,13 @@ app.http("quote", {
                 message,
                 preferredContact,
                 status: "NEW",
+                notificationStatus: "PENDING",
+                notificationAttempts: 0,
                 createdAt: new Date().toISOString()
             };
 
             context.extraOutputs.set(
-                context.extraOutputs.quoteDocument,
+                quoteDocument,
                 quote
             );
 
