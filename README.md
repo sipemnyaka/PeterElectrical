@@ -231,7 +231,7 @@ Potential future improvements include:
 
 **Sipesande Mnyaka**
 
-Integration & Production Engineer | Azure Certified | SRE Enthusiast
+Senior Integration & Production Engineer | Site Reliability Engineer | Azure Certified
 
 * GitHub: [https://github.com/sipemnyaka/PeterElectrical](https://github.com/sipemnyaka/PeterElectrical)
 * LinkedIn: [https://www.linkedin.com/in/sipesande-mnyaka-49a592b4/](https://www.linkedin.com/in/sipesande-mnyaka-49a592b4/)
